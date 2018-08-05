@@ -25,11 +25,18 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         stegsolve.cpp \
-    imagewidget.cpp
+    imagewidget.cpp \
+    mask.cpp \
+    xorimagefilter.cpp \
+    channelimagefilter.cpp
 
 HEADERS += \
         stegsolve.h \
-    imagewidget.h
+    imagewidget.h \
+    mask.h \
+    imagefilter.h \
+    xorimagefilter.h \
+    channelimagefilter.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

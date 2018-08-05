@@ -6,26 +6,41 @@
 #include <QMenuBar>
 #include <QAction>
 #include <QKeySequence>
-#include <QDebug>
 #include <QFileDialog>
 #include <QStatusBar>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QScrollArea>
+#include <QList>
+//#include <vector>
 
+#include <QDebug>
+
+#include "mask.h"
 #include "imagewidget.h"
+#include "imagefilter.h"
+#include "xorimagefilter.h"
+#include "channelimagefilter.h"
 
 class Stegsolve : public QMainWindow
 {
     Q_OBJECT
 private:
+    int scale;
+    int mode;
+    QList<ImageFilter*> filters;
     QImage *image;
     ImageWidget *image_widget;
+
     void init_menubar();
     void init_statusbar();
+    void init_filters();
+    void paint_image();
 
 private slots:
+    void left_arrow_clicked();
+    void right_arrow_clicked();
     void open_slot();
     void save_as_slot();
     void exit_slot();
