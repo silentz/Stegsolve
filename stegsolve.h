@@ -12,12 +12,16 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QPushButton>
+#include <QScrollArea>
+
+#include "imagewidget.h"
 
 class Stegsolve : public QMainWindow
 {
     Q_OBJECT
 private:
     QImage *image;
+    ImageWidget *image_widget;
     void init_menubar();
     void init_statusbar();
 

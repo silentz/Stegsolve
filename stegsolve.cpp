@@ -4,8 +4,14 @@ Stegsolve::Stegsolve(QImage *image, QWidget *parent)
     : QMainWindow(parent)
 {
     this->image = image;
+    this->image_widget = new ImageWidget(this);
+
     this->init_menubar();
     this->init_statusbar();
+
+    QScrollArea *scrollarea = new QScrollArea();
+    scrollarea->setWidget(image_widget);
+    this->setCentralWidget(scrollarea);
 
     this->setWindowTitle("Stegsolve v2.0");
     this->setGeometry(100, 100, 500, 400);
@@ -98,6 +104,7 @@ void Stegsolve::open_slot() {
             this->image = nullptr;
         }
         this->image = new QImage(filename);
+        this->image_widget->paint(image, 0, 1);
     }
 }
 

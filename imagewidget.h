@@ -3,11 +3,16 @@
 
 #include <QWidget>
 #include <QLabel>
+#include <QHBoxLayout>
+#include <QDebug>
 
-class ImageWidget : public QWidget
+class ImageWidget: public QWidget
 {
+private:
+    QLabel *label;
 public:
-    virtual void paint(QImage *image);
+    ImageWidget(QWidget *parent = 0);
+    void paint(QImage *image, int channel, float scale);
 };
 
 #endif // IMAGEWIDGET_H

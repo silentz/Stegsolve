@@ -25,12 +25,11 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         stegsolve.cpp \
-    alphachannel.cpp
+    imagewidget.cpp
 
 HEADERS += \
         stegsolve.h \
-    imagewidget.h \
-    alphachannel.h
+    imagewidget.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
