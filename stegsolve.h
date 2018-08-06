@@ -21,7 +21,10 @@
 #include "imagewidget.h"
 #include "imagefilter.h"
 #include "xorimagefilter.h"
+#include "maskimagefilter.h"
 #include "channelimagefilter.h"
+#include "randomcolormapimagefilter.h"
+#include "graybitsimagefilter.h"
 
 class Stegsolve : public QMainWindow
 {

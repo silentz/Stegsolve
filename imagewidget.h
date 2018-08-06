@@ -3,15 +3,18 @@
 
 #include <QWidget>
 #include <QLabel>
-#include <QHBoxLayout>
+#include <QVBoxLayout>
+
+#include "imageboard.h"
 
 class ImageWidget: public QWidget
 {
 private:
-    QLabel *label;
+    QLabel *name;
+    ImageBoard *board;
 public:
     ImageWidget(QWidget *parent = nullptr);
-    void paint(const QImage &image, const double scale);
+    void paint(QString name, const QImage &image, const double scale);
 };
 
 #endif // IMAGEWIDGET_H

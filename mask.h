@@ -6,8 +6,8 @@
 class Mask
 {
 private:
-    int and_mask;
-    int or_mask;
+    uint and_mask;
+    uint or_mask;
 
 public:
     Mask(uint and_mask, uint or_mask);

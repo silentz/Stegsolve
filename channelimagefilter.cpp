@@ -20,7 +20,7 @@ QImage ChannelImageFilter::filter(QImage *image) {
         for (int h = 0; h < image->height(); ++h) {
             QRgb pixel = image->pixel(w, h);
             pixel = this->mask.get_pixel(pixel);
-            if (pixel & 0xffffff) {
+            if (pixel) {
                 pixel = 0xffffffff;
             } else {
                 pixel = 0xff000000;

@@ -28,7 +28,11 @@ SOURCES += \
     imagewidget.cpp \
     mask.cpp \
     xorimagefilter.cpp \
-    channelimagefilter.cpp
+    channelimagefilter.cpp \
+    maskimagefilter.cpp \
+    randomcolormapimagefilter.cpp \
+    graybitsimagefilter.cpp \
+    imageboard.cpp
 
 HEADERS += \
         stegsolve.h \
@@ -36,7 +40,11 @@ HEADERS += \
     mask.h \
     imagefilter.h \
     xorimagefilter.h \
-    channelimagefilter.h
+    channelimagefilter.h \
+    maskimagefilter.h \
+    randomcolormapimagefilter.h \
+    graybitsimagefilter.h \
+    imageboard.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

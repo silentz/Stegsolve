@@ -26,7 +26,7 @@ void Stegsolve::paint_image() {
     ImageFilter *img_filter = this->filters[this->mode];
     QImage result = img_filter->filter(this->image);
     double image_scale = static_cast<double>(this->scale) / 100.0;
-    this->image_widget->paint(result, image_scale);
+    this->image_widget->paint("kek", result, image_scale);
 }
 
 
@@ -181,7 +181,7 @@ void Stegsolve::init_statusbar() {
 
 void Stegsolve::init_filters() {
     // normal image
-    this->filters.push_back(new ChannelImageFilter(Mask(0xffffffff, 0)));
+    this->filters.push_back(new MaskImageFilter(Mask(0xffffffff, 0x00000000)));
     // xor image filter
     this->filters.push_back(new XorImageFilter());
     // alpha channel filters
@@ -194,40 +194,46 @@ void Stegsolve::init_filters() {
     this->filters.push_back(new ChannelImageFilter(Mask(0x02000000, 0x00000000)));
     this->filters.push_back(new ChannelImageFilter(Mask(0x01000000, 0x00000000)));
     // red channel filters
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00800000, 0xff000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00400000, 0xff000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00200000, 0xff000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00100000, 0xff000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00080000, 0xff000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00040000, 0xff000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00020000, 0xff000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00010000, 0xff000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00800000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00400000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00200000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00100000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00080000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00040000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00020000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00010000, 0x00000000)));
     // green channel filters
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00008000, 0xff000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00004000, 0xff000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00002000, 0xff000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00001000, 0xff000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000800, 0xff000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000400, 0xff000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000200, 0xff000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000100, 0xff000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00008000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00004000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00002000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00001000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00000800, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00000400, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00000200, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00000100, 0x00000000)));
     // blue channel filters
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000080, 0xff000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000040, 0xff000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000020, 0xff000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000010, 0xff000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000008, 0xff000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000004, 0xff000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000002, 0xff000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000001, 0xff000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00000080, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00000040, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00000020, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00000010, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00000008, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00000004, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00000002, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter(Mask(0x00000001, 0x00000000)));
     // full alpha
     this->filters.push_back(new ChannelImageFilter(Mask(0xff000000, 0x00000000)));
     // full red
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00ff0000, 0xff000000)));
+    this->filters.push_back(new MaskImageFilter(Mask(0x00ff0000, 0xff000000)));
     // full green
-    this->filters.push_back(new ChannelImageFilter(Mask(0x0000ff00, 0xff000000)));
+    this->filters.push_back(new MaskImageFilter(Mask(0x0000ff00, 0xff000000)));
     // full blue
-    this->filters.push_back(new ChannelImageFilter(Mask(0x000000ff, 0xff000000)));
+    this->filters.push_back(new MaskImageFilter(Mask(0x000000ff, 0xff000000)));
+    // random color maps
+    this->filters.push_back(new RandomColorMapImageFilter());
+    this->filters.push_back(new RandomColorMapImageFilter());
+    this->filters.push_back(new RandomColorMapImageFilter());
+    // gray bits
+    this->filters.push_back(new GrayBitsImageFilter());
 }
 
 
