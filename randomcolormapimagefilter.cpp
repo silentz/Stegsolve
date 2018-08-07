@@ -1,7 +1,8 @@
 #include "randomcolormapimagefilter.h"
 
-RandomColorMapImageFilter::RandomColorMapImageFilter()
+RandomColorMapImageFilter::RandomColorMapImageFilter(QString name)
 {
+    this->name = name;
     qsrand(static_cast<uint>(QDateTime::currentSecsSinceEpoch()));
 }
 

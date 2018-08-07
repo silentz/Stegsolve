@@ -1,13 +1,13 @@
 #include "channelimagefilter.h"
 
-ChannelImageFilter::ChannelImageFilter() : mask(0, 0)
+ChannelImageFilter::ChannelImageFilter(QString name) : mask(0, 0)
 {
-
+    this->name = name;
 }
 
-ChannelImageFilter::ChannelImageFilter(Mask mask) : mask(mask)
+ChannelImageFilter::ChannelImageFilter(QString name, Mask mask) : mask(mask)
 {
-
+    this->name = name;
 }
 
 ChannelImageFilter::~ChannelImageFilter() {

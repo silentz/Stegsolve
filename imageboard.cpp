@@ -16,7 +16,7 @@ void ImageBoard::paintEvent(QPaintEvent *event) {
         this->painter->setRenderHint(QPainter::SmoothPixmapTransform, false);
         int width = this->to_paint.width();
         int height = this->to_paint.height();
-        this->setGeometry(0, 0, width, height);
+        this->setFixedSize(width, height);
         this->painter->drawImage(QRect(0, 0, width, height), this->to_paint);
         this->painter->end();
     }

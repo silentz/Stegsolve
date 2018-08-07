@@ -6,7 +6,7 @@
 class XorImageFilter : public ImageFilter
 {
 public:
-    XorImageFilter();
+    XorImageFilter(QString name = "");
     ~XorImageFilter();
     QImage filter(QImage *image);
 };

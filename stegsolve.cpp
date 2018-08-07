@@ -26,7 +26,7 @@ void Stegsolve::paint_image() {
     ImageFilter *img_filter = this->filters[this->mode];
     QImage result = img_filter->filter(this->image);
     double image_scale = static_cast<double>(this->scale) / 100.0;
-    this->image_widget->paint("kek", result, image_scale);
+    this->image_widget->paint(img_filter->get_name(), result, image_scale);
 }
 
 
@@ -60,12 +60,19 @@ void Stegsolve::open_slot() {
 
 
 void Stegsolve::save_as_slot() {
-    qDebug() << "save_as_slot";
+    if (this->image != nullptr) {
+        ImageFilter *img_filter = this->filters[this->mode];
+        QImage result = img_filter->filter(this->image);
+        QString filename = QFileDialog::getSaveFileName(this, "Save", "solved.bmp");
+        if (filename.length() > 0) {
+            result.save(filename, "BMP", 100);
+        }
+    }
 }
 
 
 void Stegsolve::exit_slot() {
-    qDebug() << "exit_slot";
+    this->close();
 }
 
 
@@ -181,59 +188,59 @@ void Stegsolve::init_statusbar() {
 
 void Stegsolve::init_filters() {
     // normal image
-    this->filters.push_back(new MaskImageFilter(Mask(0xffffffff, 0x00000000)));
+    this->filters.push_back(new MaskImageFilter("Normal Image", Mask(0xffffffff, 0x00000000)));
     // xor image filter
-    this->filters.push_back(new XorImageFilter());
+    this->filters.push_back(new XorImageFilter("Color Inversion (Xor)"));
     // alpha channel filters
-    this->filters.push_back(new ChannelImageFilter(Mask(0x80000000, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x40000000, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x20000000, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x10000000, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x08000000, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x04000000, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x02000000, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x01000000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Alpha plane 7", Mask(0x80000000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Alpha plane 6", Mask(0x40000000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Alpha plane 5", Mask(0x20000000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Alpha plane 4", Mask(0x10000000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Alpha plane 3", Mask(0x08000000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Alpha plane 2", Mask(0x04000000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Alpha plane 1", Mask(0x02000000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Alpha plane 0", Mask(0x01000000, 0x00000000)));
     // red channel filters
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00800000, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00400000, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00200000, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00100000, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00080000, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00040000, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00020000, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00010000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Red plane 7", Mask(0x00800000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Red plane 6", Mask(0x00400000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Red plane 5", Mask(0x00200000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Red plane 4", Mask(0x00100000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Red plane 3", Mask(0x00080000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Red plane 2", Mask(0x00040000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Red plane 1", Mask(0x00020000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Red plane 0", Mask(0x00010000, 0x00000000)));
     // green channel filters
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00008000, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00004000, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00002000, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00001000, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000800, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000400, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000200, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000100, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Green plane 7", Mask(0x00008000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Green plane 6", Mask(0x00004000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Green plane 5", Mask(0x00002000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Green plane 4", Mask(0x00001000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Green plane 3", Mask(0x00000800, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Green plane 2", Mask(0x00000400, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Green plane 1", Mask(0x00000200, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Green plane 0", Mask(0x00000100, 0x00000000)));
     // blue channel filters
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000080, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000040, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000020, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000010, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000008, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000004, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000002, 0x00000000)));
-    this->filters.push_back(new ChannelImageFilter(Mask(0x00000001, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Blue plane 7", Mask(0x00000080, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Blue plane 6", Mask(0x00000040, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Blue plane 5", Mask(0x00000020, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Blue plane 4", Mask(0x00000010, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Blue plane 3", Mask(0x00000008, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Blue plane 2", Mask(0x00000004, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Blue plane 1", Mask(0x00000002, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Blue plane 0", Mask(0x00000001, 0x00000000)));
     // full alpha
-    this->filters.push_back(new ChannelImageFilter(Mask(0xff000000, 0x00000000)));
+    this->filters.push_back(new ChannelImageFilter("Full alpha", Mask(0xff000000, 0x00000000)));
     // full red
-    this->filters.push_back(new MaskImageFilter(Mask(0x00ff0000, 0xff000000)));
+    this->filters.push_back(new MaskImageFilter("Full red", Mask(0x00ff0000, 0xff000000)));
     // full green
-    this->filters.push_back(new MaskImageFilter(Mask(0x0000ff00, 0xff000000)));
+    this->filters.push_back(new MaskImageFilter("Full green", Mask(0x0000ff00, 0xff000000)));
     // full blue
-    this->filters.push_back(new MaskImageFilter(Mask(0x000000ff, 0xff000000)));
+    this->filters.push_back(new MaskImageFilter("Full blue", Mask(0x000000ff, 0xff000000)));
     // random color maps
-    this->filters.push_back(new RandomColorMapImageFilter());
-    this->filters.push_back(new RandomColorMapImageFilter());
-    this->filters.push_back(new RandomColorMapImageFilter());
+    this->filters.push_back(new RandomColorMapImageFilter("Random color map 1"));
+    this->filters.push_back(new RandomColorMapImageFilter("Random color map 2"));
+    this->filters.push_back(new RandomColorMapImageFilter("Random color map 3"));
     // gray bits
-    this->filters.push_back(new GrayBitsImageFilter());
+    this->filters.push_back(new GrayBitsImageFilter("Gray bits"));
 }
 
 

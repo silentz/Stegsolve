@@ -1,13 +1,13 @@
 #include "maskimagefilter.h"
 
-MaskImageFilter::MaskImageFilter() : mask(0, 0)
+MaskImageFilter::MaskImageFilter(QString name) : mask(0, 0)
 {
-    // nothing
+    this->name = name;
 }
 
-MaskImageFilter::MaskImageFilter(Mask mask): mask(mask)
+MaskImageFilter::MaskImageFilter(QString name, Mask mask): mask(mask)
 {
-    // also nothing
+    this->name = name;
 }
 
 MaskImageFilter::~MaskImageFilter() {

@@ -9,8 +9,8 @@ class MaskImageFilter : public ImageFilter
 private:
     Mask mask;
 public:
-    MaskImageFilter();
-    MaskImageFilter(Mask mask);
+    MaskImageFilter(QString name = "");
+    MaskImageFilter(QString name, Mask mask);
     ~MaskImageFilter();
     QImage filter(QImage *image);
 };

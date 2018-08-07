@@ -8,7 +8,7 @@
 class RandomColorMapImageFilter : public ImageFilter
 {
 public:
-    RandomColorMapImageFilter();
+    RandomColorMapImageFilter(QString name = "");
     QImage filter(QImage *image);
 };
 

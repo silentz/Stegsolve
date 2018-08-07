@@ -6,7 +6,7 @@
 class GrayBitsImageFilter : public ImageFilter
 {
 public:
-    GrayBitsImageFilter();
+    GrayBitsImageFilter(QString name = "");
     QImage filter(QImage *image);
 };
 

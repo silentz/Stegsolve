@@ -1,8 +1,8 @@
 #include "xorimagefilter.h"
 
-XorImageFilter::XorImageFilter()
+XorImageFilter::XorImageFilter(QString name)
 {
-    // nothing
+    this->name = name;
 }
 
 XorImageFilter::~XorImageFilter() {

@@ -1,8 +1,8 @@
 #include "graybitsimagefilter.h"
 
-GrayBitsImageFilter::GrayBitsImageFilter()
+GrayBitsImageFilter::GrayBitsImageFilter(QString name)
 {
-
+    this->name = name;
 }
 
 QImage GrayBitsImageFilter::filter(QImage *image) {

@@ -10,8 +10,8 @@ private:
     Mask mask;
 
 public:
-    ChannelImageFilter();
-    ChannelImageFilter(Mask mask);
+    ChannelImageFilter(QString name = "");
+    ChannelImageFilter(QString name, Mask mask);
     ~ChannelImageFilter();
     QImage filter(QImage *image);
 };
