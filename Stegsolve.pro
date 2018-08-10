@@ -32,7 +32,10 @@ SOURCES += \
     maskimagefilter.cpp \
     randomcolormapimagefilter.cpp \
     graybitsimagefilter.cpp \
-    imageboard.cpp
+    imageboard.cpp \
+    stereogramsolver.cpp \
+    framebrowser.cpp \
+    dataextract.cpp
 
 HEADERS += \
         stegsolve.h \
@@ -44,7 +47,10 @@ HEADERS += \
     maskimagefilter.h \
     randomcolormapimagefilter.h \
     graybitsimagefilter.h \
-    imageboard.h
+    imageboard.h \
+    stereogramsolver.h \
+    framebrowser.h \
+    dataextract.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

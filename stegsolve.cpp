@@ -8,6 +8,7 @@ Stegsolve::Stegsolve(QImage *image, QWidget *parent)
     this->filters = QList<ImageFilter*>();
     this->image = image;
     this->image_widget = new ImageWidget(this);
+    this->raw_data = new QByteArray();
 
     this->init_menubar();
     this->init_statusbar();
@@ -53,6 +54,10 @@ void Stegsolve::open_slot() {
             delete this->image;
             this->image = nullptr;
         }
+        QFile f(filename);
+        f.open(QIODevice::ReadOnly);
+        *this->raw_data = f.readAll();
+        f.close();
         this->image = new QImage(filename);
         this->paint_image();
     }
@@ -82,17 +87,26 @@ void Stegsolve::file_format_slot() {
 
 
 void Stegsolve::data_extract_slot() {
-    qDebug() << "data_extract_slot";
+    if (this->image != nullptr) {
+        DataExtract *data = new DataExtract(*this->image, this);
+        data->show();
+    }
 }
 
 
 void Stegsolve::stereogram_solver_slot() {
-    qDebug() << "stereogram_solver_slot";
+    if (this->image != nullptr) {
+        StereogramSolver *solver = new StereogramSolver(*this->image, this);
+        solver->show();
+    }
 }
 
 
 void Stegsolve::frame_browser_slot() {
-    qDebug() << "frame_browser_slot";
+    if (this->image != nullptr) {
+        FrameBrowser *browser = new FrameBrowser(*this->raw_data, this);
+        browser->show();
+    }
 }
 
 

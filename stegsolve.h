@@ -25,6 +25,9 @@
 #include "channelimagefilter.h"
 #include "randomcolormapimagefilter.h"
 #include "graybitsimagefilter.h"
+#include "stereogramsolver.h"
+#include "framebrowser.h"
+#include "dataextract.h"
 
 class Stegsolve : public QMainWindow
 {
@@ -34,6 +37,7 @@ private:
     int mode;
     QList<ImageFilter*> filters;
     QImage *image;
+    QByteArray *raw_data;
     ImageWidget *image_widget;
 
     void init_menubar();
