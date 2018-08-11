@@ -13,9 +13,6 @@
 #include <QPushButton>
 #include <QScrollArea>
 #include <QList>
-//#include <vector>
-
-#include <QDebug>
 
 #include "mask.h"
 #include "imagewidget.h"
@@ -28,6 +25,8 @@
 #include "stereogramsolver.h"
 #include "framebrowser.h"
 #include "dataextract.h"
+#include "imagecombiner.h"
+#include "helpwidget.h"
 
 class Stegsolve : public QMainWindow
 {

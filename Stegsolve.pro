@@ -35,7 +35,9 @@ SOURCES += \
     imageboard.cpp \
     stereogramsolver.cpp \
     framebrowser.cpp \
-    dataextract.cpp
+    dataextract.cpp \
+    imagecombiner.cpp \
+    helpwidget.cpp
 
 HEADERS += \
         stegsolve.h \
@@ -50,7 +52,9 @@ HEADERS += \
     imageboard.h \
     stereogramsolver.h \
     framebrowser.h \
-    dataextract.h
+    dataextract.h \
+    imagecombiner.h \
+    helpwidget.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

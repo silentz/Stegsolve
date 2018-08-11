@@ -82,7 +82,7 @@ void Stegsolve::exit_slot() {
 
 
 void Stegsolve::file_format_slot() {
-    qDebug() << "file_format_slot";
+
 }
 
 
@@ -111,12 +111,16 @@ void Stegsolve::frame_browser_slot() {
 
 
 void Stegsolve::image_combiner_slot() {
-    qDebug() << "image_combiner_slot";
+    if (this->image != nullptr) {
+        ImageCombiner *img_combiner = new ImageCombiner(*this->image, this);
+        img_combiner->show();
+    }
 }
 
 
 void Stegsolve::about_slot() {
-    qDebug() << "about_slot";
+    HelpWidget *help = new HelpWidget(this);
+    help->show();
 }
 
 
@@ -138,9 +142,9 @@ void Stegsolve::init_menubar() {
     exit->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_E));          // Ctrl+E
     this->connect(exit, SIGNAL(triggered(bool)), this, SLOT(exit_slot()));
 
-    QAction *file_format = new QAction("File Format", this);
-    file_format->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_F));   // Ctrl+F
-    this->connect(file_format, SIGNAL(triggered(bool)), this, SLOT(file_format_slot()));
+//    QAction *file_format = new QAction("File Format", this);
+//    file_format->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_F));   // Ctrl+F
+//    this->connect(file_format, SIGNAL(triggered(bool)), this, SLOT(file_format_slot()));
 
     QAction *data_extract = new QAction("Data Extract", this);
     data_extract->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_D));  // Ctrl+D
@@ -166,7 +170,7 @@ void Stegsolve::init_menubar() {
     file->addAction(save_as);
     file->addAction(exit);
 
-    analyse->addAction(file_format);
+//    analyse->addAction(file_format);
     analyse->addAction(data_extract);
     analyse->addAction(stereogram_solver);
     analyse->addAction(frame_browser);
