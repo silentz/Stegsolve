@@ -44,8 +44,8 @@ QString ImageCombiner::get_title() {
         case 6: return "Sub (r,g,b separate)";
         case 7: return "Mul";
         case 8: return "Mul (r,g,b separate)";
-        case 9: return "Lightest (r,g,b separate)";
-        case 10: return "Darkest (r,g,b separate)";
+        case 9: return "Lightest";
+        case 10: return "Darkest";
         case 11: return "Horizontal interlace";
         case 12: return "Vertical interlace";
     }
@@ -70,7 +70,11 @@ void ImageCombiner::update_screen() {
 }
 
 void ImageCombiner::save_slot() {
-
+    QString filename = QFileDialog::getSaveFileName(this, "Save", "solved.bmp");
+    if (filename.length() > 0) {
+        QImage result = this->get_image();
+        result.save(filename, "BMP");
+    }
 }
 
 void ImageCombiner::left_slot() {
